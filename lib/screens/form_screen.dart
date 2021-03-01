@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_database_1/models/transaction.dart';
+import 'package:flutter_database_1/models/transactions.dart';
 import 'package:flutter_database_1/providers/transaction_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -54,7 +54,7 @@ class FormScreen extends StatelessWidget {
                       print(amount);
 
                       //create obj
-                      Transaction statementItem = Transaction(
+                      Transactions statementItem = Transactions(
                           title: title,
                           amount: double.parse(amount),
                           date: DateTime.now());
