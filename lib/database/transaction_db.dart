@@ -22,14 +22,14 @@ class TransactionDB {
     return db;
   }
 
-  //save data
+  // save data
   Future<int> insertData(Transactions statement) async {
-    //db => store
-    //transaction.db => table "expense"
+    // db => store
+    // transaction.db => table "expense"
     var db = await this.openDatabase();
     var store = intMapStoreFactory.store("expense");
 
-    //json
+    // json
     var keyID = store.add(db, {
       "title": statement.title,
       "amount": statement.amount,
@@ -37,5 +37,22 @@ class TransactionDB {
     });
     db.close();
     return keyID;
+  }
+
+  // fetch data
+  Future<List> loadAllData() async {
+    var db = await this.openDatabase();
+    var store = intMapStoreFactory.store("expense");
+    var snapshot = await store.find(db);
+    List transactionList = List<Transactions>();
+    for (var record in snapshot) {
+      transactionList.add(Transactions(
+        title: record["title"],
+        amount: record["amount"],
+        date: DateTime.parse(record["date"]),
+      ));
+    }
+    print(snapshot);
+    return transactionList;
   }
 }

@@ -41,6 +41,13 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Provider.of<TransactionProvider>(context, listen: false).initdata();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
@@ -81,7 +88,8 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                         ),
                         title: Text(data.title),
-                        subtitle: Text(DateFormat("dd/MM/yyyy").format(data.date)),
+                        subtitle:
+                            Text(DateFormat("dd/MM/yyyy").format(data.date)),
                       ),
                     );
                   });
