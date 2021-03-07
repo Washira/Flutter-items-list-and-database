@@ -43,7 +43,9 @@ class TransactionDB {
   Future<List> loadAllData() async {
     var db = await this.openDatabase();
     var store = intMapStoreFactory.store("expense");
-    var snapshot = await store.find(db);
+
+    //fill data is from latest to oldest => false
+    var snapshot = await store.find(db, finder: Finder(sortOrders: [SortOrder(Field.key, false)]));
     List transactionList = List<Transactions>();
     for (var record in snapshot) {
       transactionList.add(Transactions(
@@ -52,7 +54,6 @@ class TransactionDB {
         date: DateTime.parse(record["date"]),
       ));
     }
-    print(snapshot);
     return transactionList;
   }
 }
