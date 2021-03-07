@@ -32,7 +32,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     return FormScreen();
                   }));
                 }),
-
+            IconButton(
+                icon: Icon(Icons.exit_to_app),
+                onPressed: () {
+                  SystemNavigator.pop();
+                }),
           ],
         ),
         body: Consumer(
