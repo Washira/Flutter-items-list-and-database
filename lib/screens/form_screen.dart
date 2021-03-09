@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_database_1/main.dart';
 import 'package:flutter_database_1/models/transactions.dart';
 import 'package:flutter_database_1/providers/transaction_provider.dart';
 import 'package:provider/provider.dart';
@@ -63,7 +64,13 @@ class FormScreen extends StatelessWidget {
                       var provider = Provider.of<TransactionProvider>(context,
                           listen: false);
                       provider.addTransaction(statementItem);
-                      Navigator.pop(context);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              fullscreenDialog: true,
+                              builder: (context) {
+                                return MyHomePage();
+                              }));
                     }
                   },
                   child: Text("Add"),
