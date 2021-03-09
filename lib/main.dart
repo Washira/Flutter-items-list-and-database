@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_database_1/providers/transaction_provider.dart';
+import 'package:flutter_database_1/screens/form_screen.dart';
 import 'package:flutter_database_1/screens/home_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -40,6 +41,25 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return HomeScreen();
+    return DefaultTabController(
+        length: 2,
+        child: Scaffold(
+          backgroundColor: Colors.blue,
+          body: TabBarView(
+            children: [HomeScreen(), FormScreen()],
+          ),
+          bottomNavigationBar: TabBar(
+            tabs: [
+              Tab(
+                icon: Icon(Icons.list),
+                text: "รายการธุรกรรม",
+              ),
+              Tab(
+                icon: Icon(Icons.add),
+                text: "เพิ่มข้อมูล",
+              )
+            ],
+          ),
+        ));
   }
 }
